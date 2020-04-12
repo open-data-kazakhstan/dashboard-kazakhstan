@@ -12,8 +12,12 @@ module.exports = {
         "screen-0.2": "calc(100vh / 5)",
         "screen-400px": "400px",
         "screen-500px": "500px",
-        "screen-600px": "600px"
+        "screen-600px": "600px",
+        "screen-800px": "800px"
       }),
+      width: theme => ({
+        "360px": "360px"
+      })
     },
   },
   variants: { display: ["responsive", "hover", "focus"] },

@@ -65,7 +65,7 @@ class App extends Component {
       totalDeaths = latestCovidData[0].Deaths;
       deathRate = (totalDeaths / totalCases * 100).toFixed(2);
       newCases = totalCases - previousCovidData[0].Confirmed;
-      newCaseRate = (newCases / previousCovidData[0].Confirmed).toFixed(2);
+      newCaseRate = (newCases / previousCovidData[0].Confirmed * 100).toFixed(2);
 
       mainCitiesData = [
         {id: 'Нур-Султан', data: []},
@@ -74,9 +74,9 @@ class App extends Component {
       covid19.forEach(row => {
         if (mainCitiesData)
         if (row.Region === 'Нур-Султан') {
-          mainCitiesData[0].data.push({x: row.Date.slice(0,19), y: parseInt(row.Confirmed)})
+          mainCitiesData[0].data.push({x: row.Date.slice(0,19), y: parseInt(row.Confirmed) - parseInt(row.Recovered)});
         } else if (row.Region === 'Алматы') {
-          mainCitiesData[1].data.push({x: row.Date.slice(0,19), y: parseInt(row.Confirmed)})
+          mainCitiesData[1].data.push({x: row.Date.slice(0,19), y: parseInt(row.Confirmed) - parseInt(row.Recovered)});
         }
       })
     }
@@ -119,7 +119,7 @@ class App extends Component {
             newCases={newCases}
             newCaseRate={newCaseRate}
           />
-          <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-8 mt-4 mb-4 h-screen-0.8 md:h-screen-400px">
+        <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-8 mt-4 mb-4 w-full h-screen-800px md:h-screen-400px">
             <LineChart data={mainCitiesData} />
             <Choropleth data={latestCovidData} features={geojson.features} />
           </div>
