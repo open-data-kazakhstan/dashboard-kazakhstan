@@ -14,7 +14,6 @@ const LineChart = ({ data }) => (
         }}
         xFormat="time:%Y-%m-%dT%H:%M:%S"
         yScale={{ type: 'linear', min: 50, max: 'auto', stacked: false, reverse: false }}
-        curve="cardinal"
         axisBottom={{
             format: '%b %d',
             tickValues: 'every 8 days',
@@ -52,7 +51,7 @@ const LineChart = ({ data }) => (
                     {slice.points.reverse().map((point, index) => (
                       <div key={point.id}>
                         {index === 0
-                          ? <div>{(new Date(point.data.xFormatted)).toTimeString()}</div>
+                          ? <div>{(new Date(point.data.xFormatted)).toString()}</div>
                           : ''
                         }
                         <div

@@ -72,10 +72,12 @@ class App extends Component {
         {id: 'Алматы', data: []}
       ];
       covid19.forEach(row => {
-        if (mainCitiesData)
-        if (row.Region === 'Нур-Султан') {
+        // Use only every 3 hours data to make the line graph smooth
+        const hour = (new Date(row.Date)).getHours();
+        const acceptedHours = [0, 3, 6, 9, 12, 15, 18, 21];
+        if (row.Region === 'Нур-Султан' && acceptedHours.includes(hour)) {
           mainCitiesData[0].data.push({x: row.Date.slice(0,19), y: parseInt(row.Confirmed) - parseInt(row.Recovered) - parseInt(row.Deaths)});
-        } else if (row.Region === 'Алматы') {
+        } else if (row.Region === 'Алматы' && acceptedHours.includes(hour)) {
           mainCitiesData[1].data.push({x: row.Date.slice(0,19), y: parseInt(row.Confirmed) - parseInt(row.Recovered) - parseInt(row.Deaths)});
         }
       })
