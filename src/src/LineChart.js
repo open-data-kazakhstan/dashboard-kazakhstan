@@ -13,11 +13,11 @@ const LineChart = ({ data }) => (
             precision: 'hour',
         }}
         xFormat="time:%Y-%m-%dT%H:%M:%S"
-        yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
+        yScale={{ type: 'linear', min: 50, max: 'auto', stacked: false, reverse: false }}
         curve="cardinal"
         axisBottom={{
             format: '%b %d',
-            tickValues: 'every 11 days',
+            tickValues: 'every 8 days',
             legend: 'Date',
             legendOffset: 35,
             legendPosition: 'middle'
@@ -39,6 +39,35 @@ const LineChart = ({ data }) => (
         pointLabel="y"
         pointLabelYOffset={-12}
         pointSize="2"
+        enableSlices="x"
+        sliceTooltip={({ slice }) => {
+            return (
+                <div
+                    style={{
+                        background: 'white',
+                        padding: '9px 12px',
+                        border: '1px solid #ccc',
+                    }}
+                >
+                    {slice.points.reverse().map((point, index) => (
+                      <div key={point.id}>
+                        {index === 0
+                          ? <div>{(new Date(point.data.xFormatted)).toTimeString()}</div>
+                          : ''
+                        }
+                        <div
+                            style={{
+                                color: point.serieColor,
+                                padding: '3px 0',
+                            }}
+                        >
+                          {point.serieId}: {point.data.yFormatted} active cases
+                        </div>
+                      </div>
+                    ))}
+                </div>
+            )
+        }}
         useMesh={true}
         legends={[
             {
