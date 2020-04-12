@@ -74,9 +74,9 @@ class App extends Component {
       covid19.forEach(row => {
         if (mainCitiesData)
         if (row.Region === 'Нур-Султан') {
-          mainCitiesData[0].data.push({x: row.Date.slice(0,19), y: parseInt(row.Confirmed) - parseInt(row.Recovered)});
+          mainCitiesData[0].data.push({x: row.Date.slice(0,19), y: parseInt(row.Confirmed) - parseInt(row.Recovered) - parseInt(row.Deaths)});
         } else if (row.Region === 'Алматы') {
-          mainCitiesData[1].data.push({x: row.Date.slice(0,19), y: parseInt(row.Confirmed) - parseInt(row.Recovered)});
+          mainCitiesData[1].data.push({x: row.Date.slice(0,19), y: parseInt(row.Confirmed) - parseInt(row.Recovered) - parseInt(row.Deaths)});
         }
       })
     }

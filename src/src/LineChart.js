@@ -27,7 +27,7 @@ const LineChart = ({ data }) => (
             tickSize: 0,
             tickPadding: 0,
             tickRotation: 0,
-            legend: 'Active cases (confirmed - recovered)',
+            legend: 'Active cases (confirmed - recovered - deaths)',
             legendOffset: -50,
             legendPosition: 'middle'
         }}
