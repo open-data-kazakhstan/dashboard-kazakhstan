@@ -123,7 +123,7 @@ class App extends Component {
           />
         <div className="grid sm:grid-cols-1 lg:grid-cols-2 gap-8 mt-4 mb-4 w-full h-screen-800px md:h-screen-400px">
             <LineChart data={mainCitiesData} />
-            <Choropleth data={latestCovidData} features={geojson.features} />
+            <Choropleth data={latestCovidData} features={geojson.features} width={560} height={400} />
           </div>
         </div>
       </div>

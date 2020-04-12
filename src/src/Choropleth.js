@@ -3,11 +3,13 @@ import { ResponsiveChoropleth } from '@nivo/geo';
 // make sure parent container have a defined height when using
 // responsive component, otherwise height will be 0 and
 // no chart will be rendered.
-const Choropleth = ({ data, features }) => (
+const Choropleth = ({ data, features, width, height }) => (
     <ResponsiveChoropleth
         data={data}
         value="Confirmed"
         features={features}
+        width={width}
+        height={height}
         margin={{ top: 0, right: 0, bottom: 0, left: 0 }}
         colors="PuRd"
         domain={[ 0, 300 ]}
